@@ -1,16 +1,30 @@
 {
-  "name": "m4a1",
+  "name": "m6a1",
   "version": "1.0.0",
-  "description": "IFT458-M4A1",
+  "description": "IFT458-M6A1",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update": "npm i -g npm-check-updates; ncu -u; npm install; npm audit fix;",
+    "configFile": "npm install dotenv --save;",
+    "start": "node server.js",
+    "test": "nodemon server.js"
   },
   "author": "Michael Brown",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "config": "^3.3.9",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
     "express": "^4.18.2",
-    "mongoose": "^7.0.2",
-    "nodemon": "^2.0.21"
+    "express-session": "^1.17.3",
+    "express-validator": "^6.15.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "morgan-body": "^2.6.8",
+    "nodemon": "^2.0.22",
+    "rotating-file-stream": "^3.1.0"
   }
 }

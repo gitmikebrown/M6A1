@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
+//const expressValidator = require('express-validator');
 
 /*NOTES
  "LOAN_NUMBER: Number,"  
  -->>The mongoDb _ID will act as the loan number.  I took this out because of that.
- 
- "ID: {type: Int, Identity (20001, 1)}," 
- -->>I tried to find something to get the Identity function to work.  I couldn't find anything.  
- -->>Mongoose has an _Id already built in so I used that.
 */
 
 const loanSchema = new mongoose.Schema({
@@ -18,15 +15,31 @@ const loanSchema = new mongoose.Schema({
     unique: true,
     trim: true,
     maxlength: [40, 'A CUSTOMER number must have less or equal then 40 characters'],
-    minlength: [10, 'A CUSTOMER number must have more or equal then 10 characters']
+    minlength: [9, 'A CUSTOMER number must have more or equal then 10 characters']
+  },
+  EMAIL:{
+    type: String,
+    validate: {
+      validator: (value) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value),
+      message: (props) => `${props.value} is not a valid email address`
+    }
+
   },
 /*************************************************/
-  LOAN_TYPE: String,
+  LOAN_TYPE: {
+    type: String,
+    enum: {
+      values: ['Mortgage','mortgage','Auto','auto'], 
+      message:'{VALUE} is not supported'}
+  },
 /*************************************************/
-  AMOUNT: Number,
+  AMOUNT: {
+    type: Number,
+    min: [1000, 'Must be at least 1000, got {VALUE}'],
+    max: [1000000, 'Cannot be more than $1,000,000, got {VALUE}'],
+  },
 /*************************************************/
   INTEREST_RATE: Number,
-/*************************************************/
   LOAN_TERMS: String,
 /*************************************************/
   START_DATE: { 
@@ -39,7 +52,9 @@ const loanSchema = new mongoose.Schema({
     type: Boolean, 
     default: false 
   }
-},  
+},
+/*************************************************/
+/*************************************************/  
 {
     timestamps: { createdAt: 'CREATED_DATE', updatedAt: 'MODIFIED_DATE' }
 });
