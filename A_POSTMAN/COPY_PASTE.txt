@@ -1,0 +1,29 @@
+Customer
+
+{
+    "FIRST_NAME": "you and me",
+    "MIDDLE_NAME": "J",
+    "LAST_NAME": "Brown",
+    "DATE_OF_BIRTH":"11/20/1990",
+    "GENDER":"male" 
+}
+
+
+Loan
+{
+	"ID_CUSTOMER": "",
+	"LOAN_TYPE": "Mortgage",
+	"AMOUNT": "500",
+	"INTEREST_RATE": "5",
+	"LOAN_TERMS": "360"
+}
+
+
+Ledger
+{
+    "ID_LOAN":"50000005555555500",
+    "PAYMENT_AMOUNT": 500,
+    "INTEREST": 5,
+    "PRINCIPAL": 500000
+}
+
