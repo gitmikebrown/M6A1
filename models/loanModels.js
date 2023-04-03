@@ -15,6 +15,7 @@ const loanSchema = new mongoose.Schema({
     unique: true,
     trim: true
   },
+  /*************************************************/
   EMAIL:{
     type: String,
     validate: {
