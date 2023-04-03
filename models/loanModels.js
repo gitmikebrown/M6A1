@@ -13,15 +13,15 @@ const loanSchema = new mongoose.Schema({
     type: String, 
     require: [true,'You must enter a Customer ID'],
     unique: true,
-    trim: true,
-    maxlength: [40, 'A CUSTOMER number must have less or equal then 40 characters'],
-    minlength: [9, 'A CUSTOMER number must have more or equal then 10 characters']
+    trim: true
   },
   EMAIL:{
     type: String,
     validate: {
       validator: (value) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value),
-      message: (props) => `${props.value} is not a valid email address`
+      message: (props) => `${props.value} is not a valid email address`,
+      maxlength: [80, 'A CUSTOMER number must have less or equal then 80 characters'],
+      minlength: [7, 'A CUSTOMER number must have more or equal then 7 characters']
     }
 
   },
